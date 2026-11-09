@@ -1,4 +1,4 @@
-![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
+﻿![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
 # Llanquihue Tour - Experiencia 1, Semana 3
 
@@ -52,8 +52,6 @@ También se puede compilar y ejecutar desde una terminal dentro de la carpeta `L
 javac -encoding UTF-8 -d out src/model/Direccion.java src/model/Persona.java src/model/Empleado.java src/app/Main.java
 java -cp out app.Main
 ```
-
-No requiere bibliotecas externas ni archivos de datos. Los datos de ejemplo son ficticios y los cambios se mantienen solo durante la ejecución.
 
 **Repositorio GitHub:** [DarkHaruki/llanquihue-tour](https://github.com/DarkHaruki/llanquihue-tour)
 
