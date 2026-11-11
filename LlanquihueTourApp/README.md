@@ -59,4 +59,4 @@ El lector cierra el archivo automáticamente. Si falta el archivo, una línea ti
 
 https://github.com/DarkHaruki/llanquihue-tour
 
-La carpeta `LlanquihueTourApp` corresponde a Semana 4. El código anterior de Semana 3 se conserva en la raíz del repositorio.
+La carpeta `LlanquihueTourApp` corresponde a Semana 4.
