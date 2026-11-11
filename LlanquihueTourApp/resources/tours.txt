@@ -1,0 +1,6 @@
+Ruta del Kuchen;gastronómico;25000
+Paseo por el Lago Llanquihue;lacustre;18000
+Patrimonio de Llanquihue;cultural;15000
+Sabores del Sur;gastronómico;30000
+Excursión a Frutillar;cultural;22000
+Navegación al Atardecer;lacustre;20000
