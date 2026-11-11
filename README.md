@@ -1,62 +1,68 @@
-﻿![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
+# Llanquihue Tour
 
-# Llanquihue Tour - Experiencia 1, Semana 3
+Actividad de la Semana 4 de Desarrollo Orientado a Objetos I (PRY2202), Experiencia 2, Forma B.
 
-Desarrollo Orientado a Objetos I (PRY2202) · Forma B
+**Autor:** David Soto · Analista Programador · Duoc UC Online.
 
-## 👤 Autor del proyecto
+Aplicación de consola Java que carga tours desde un archivo de texto, crea objetos `Tour` y los almacena en un `ArrayList`. Muestra el catálogo completo, filtra los tours gastronómicos y busca un tour por nombre.
 
-- **Nombre completo:** David Soto
-- **Carrera:** Analista Programador
-- **Sede:** Online
+**Actividad actual:** [Abrir LlanquihueTourApp de Semana 4](LlanquihueTourApp/).
 
-## 📘 Descripción general del sistema
-
-Este proyecto corresponde a la actividad de la Semana 3 de Desarrollo Orientado a Objetos I. Es un prototipo en Java para representar a las personas relacionadas con la agencia Llanquihue Tour y organizar sus datos de contacto y dirección.
-
-El programa crea un cliente y dos empleados, muestra sus datos en consola y permite comprobar la actualización del teléfono de un cliente. Se utilizan encapsulamiento, composición y herencia para organizar y reutilizar las clases.
-
-## 🧱 Estructura general del proyecto
+## Estructura de carpetas
 
 ```text
-LlanquihueTour/
+LlanquihueTourApp/
 ├── src/
-│   ├── app/
-│   │   └── Main.java
-│   └── model/
-│       ├── Direccion.java
-│       ├── Persona.java
-│       └── Empleado.java
-├── LlanquihueTour.iml
-├── .gitignore
+│   ├── model/Tour.java
+│   ├── data/GestorDatos.java
+│   └── ui/Main.java
+├── resources/tours.txt
 └── README.md
 ```
 
-- **app:** contiene `Main`, donde se crean los objetos y se ejecuta el programa.
-- **model:** contiene `Persona`, con los datos personales; `Direccion`, con calle, número y comuna; y `Empleado`, que hereda de `Persona` y agrega el cargo.
+- `model`: clase Tour con nombre, tipo y precio en pesos chilenos; constructor, getters, setters y toString.
+- `data`: lectura UTF-8 línea por línea, separación con split(";") y creación de la colección.
+- `ui`: recorrido, filtro por tipo y búsqueda por nombre.
+- `resources`: seis registros de ejemplo en formato `nombre;tipo;precio`, sin espacios alrededor de los separadores. Los espacios internos de los nombres se conservan.
 
-`Persona` contiene un objeto `Direccion` como atributo. Las clases del modelo tienen atributos privados, constructores, getters, setters y el método `toString()` para mostrar sus datos.
+Los precios y tours son datos de ejemplo para la actividad.
 
-## ⚙️ Instrucciones para clonar y ejecutar el proyecto
+## Ejecutar en IntelliJ IDEA
 
-1. Clonar el repositorio con `git clone https://github.com/DarkHaruki/llanquihue-tour.git`, o descargar el ZIP desde GitHub y descomprimirlo.
-2. Abrir la carpeta `LlanquihueTour` desde **File > Open** en IntelliJ IDEA.
-3. Seleccionar un JDK instalado (Java 8 o superior) en **File > Project Structure > Project SDK**.
-4. Si es necesario, hacer clic derecho en `src` y seleccionar **Mark Directory as > Sources Root**.
-5. Abrir `src/app/Main.java` y ejecutar `Main.main()` con el botón verde junto al método.
-6. Revisar en consola los datos del cliente, los dos empleados y el teléfono actualizado.
+1. Instalar o seleccionar un JDK 8 o superior.
+2. Abrir con **File > Open** la carpeta `LlanquihueTourApp` (esta carpeta, dentro del repositorio).
+3. Seleccionar el JDK en **File > Project Structure > Project SDK**.
+4. Hacer clic derecho en `src` y elegir **Mark Directory as > Sources Root**.
+5. Abrir `src/ui/Main.java` y ejecutar `Main.main()` con el botón verde.
+6. Si es necesario, en **Run > Edit Configurations**, establecer **Working directory** en la carpeta `LlanquihueTourApp`, que contiene `resources`.
 
-También se puede compilar y ejecutar desde una terminal dentro de la carpeta `LlanquihueTour`:
+## Ejecutar desde terminal
 
-```text
-javac -encoding UTF-8 -d out src/model/Direccion.java src/model/Persona.java src/model/Empleado.java src/app/Main.java
-java -cp out app.Main
+Desde la carpeta `LlanquihueTourApp`:
+
+```bash
+javac -encoding UTF-8 -d out src/model/Tour.java src/data/GestorDatos.java src/ui/Main.java
+java -cp out ui.Main
 ```
 
-**Repositorio GitHub:** [DarkHaruki/llanquihue-tour](https://github.com/DarkHaruki/llanquihue-tour)
+Para usar otro archivo, pasar su ruta como argumento:
 
-**Fecha de entrega:** 09/11/2026.
+```bash
+java -cp out ui.Main resources/tours.txt
+```
 
----
-Duoc UC | Escuela de Informática y Telecomunicaciones | Experiencia 1, Semana 3
+## Resultado esperado
 
+Se muestran seis tours en el catálogo, dos tours gastronómicos y el resultado de buscar `Ruta del Kuchen` (precio $25000).
+
+El lector cierra el archivo automáticamente. Si falta el archivo, una línea tiene un formato incorrecto o un precio no es un entero no negativo, el programa informa el error y finaliza.
+
+## Repositorio
+
+https://github.com/DarkHaruki/llanquihue-tour
+
+La carpeta `LlanquihueTourApp` corresponde a Semana 4. El código anterior de Semana 3 se conserva en la raíz del repositorio.
+
+## Actividad anterior de Semana 3
+
+El directorio `src` de la raíz conserva las clases `app.Main`, `model.Persona`, `model.Direccion` y `model.Empleado`, que demuestran encapsulamiento, composición y herencia. La actividad actual se ejecuta de forma independiente desde `LlanquihueTourApp`.
