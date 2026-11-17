@@ -1,62 +1,50 @@
 # LlanquihueTourApp
 
-Actividad de la Semana 4 de Desarrollo Orientado a Objetos I (PRY2202), Experiencia 2, Forma B.
+David Soto — Desarrollo Orientado a Objetos I, Semana 4.
 
-**Autor:** David Soto · Analista Programador · Duoc UC Online.
+Aplicación de consola en Java para consultar un catálogo de tours de Llanquihue. Lee el archivo `resources/tours.txt`, crea objetos `Tour` y los almacena en un `ArrayList`.
 
-Aplicación de consola Java que carga tours desde un archivo de texto, crea objetos `Tour` y los almacena en un `ArrayList`. Muestra el catálogo completo, filtra los tours gastronómicos y busca un tour por nombre.
+## Archivos
 
-## Estructura de carpetas
+| Archivo | Función |
+| --- | --- |
+| `src/model/Tour.java` | Define nombre, tipo y precio, con constructor, getters, setters y `toString()`. |
+| `src/data/GestorDatos.java` | Lee el archivo en UTF-8, separa los campos por punto y coma y crea la colección. |
+| `src/ui/Main.java` | Muestra todos los tours, filtra por tipo gastronómico y busca por nombre. |
+| `resources/tours.txt` | Contiene seis tours de ejemplo con el formato `nombre;tipo;precio`. |
 
-```text
-LlanquihueTourApp/
-├── src/
-│   ├── model/Tour.java
-│   ├── data/GestorDatos.java
-│   └── ui/Main.java
-├── resources/tours.txt
-└── README.md
-```
+Los precios están expresados en pesos chilenos. Los nombres pueden contener espacios; no hay espacios alrededor de los separadores.
 
-- `model`: clase Tour con nombre, tipo y precio en pesos chilenos; constructor, getters, setters y toString.
-- `data`: lectura UTF-8 línea por línea, separación con split(";") y creación de la colección.
-- `ui`: recorrido, filtro por tipo y búsqueda por nombre.
-- `resources`: seis registros de ejemplo en formato `nombre;tipo;precio`, sin espacios alrededor de los separadores. Los espacios internos de los nombres se conservan.
+## Ejecución
 
-Los precios y tours son datos de ejemplo para la actividad.
+Se requiere JDK 8 o superior.
 
-## Ejecutar en IntelliJ IDEA
+### IntelliJ IDEA
 
-1. Instalar o seleccionar un JDK 8 o superior.
-2. Abrir con **File > Open** la carpeta `LlanquihueTourApp` (esta carpeta, dentro del repositorio).
-3. Seleccionar el JDK en **File > Project Structure > Project SDK**.
-4. Hacer clic derecho en `src` y elegir **Mark Directory as > Sources Root**.
-5. Abrir `src/ui/Main.java` y ejecutar `Main.main()` con el botón verde.
-6. Si es necesario, en **Run > Edit Configurations**, establecer **Working directory** en la carpeta `LlanquihueTourApp`, que contiene `resources`.
+1. Abrir la carpeta `LlanquihueTourApp`, ubicada dentro del repositorio.
+2. Seleccionar el JDK en **File > Project Structure > Project SDK**.
+3. Marcar `src` como **Sources Root** desde el menú contextual.
+4. Ejecutar el método `main` de `src/ui/Main.java`.
 
-## Ejecutar desde terminal
+El directorio de trabajo de la configuración de ejecución debe ser `LlanquihueTourApp`, donde se encuentra la carpeta `resources`.
+
+### Terminal
 
 Desde la carpeta `LlanquihueTourApp`:
 
-```bash
+```sh
 javac -encoding UTF-8 -d out src/model/Tour.java src/data/GestorDatos.java src/ui/Main.java
 java -cp out ui.Main
 ```
 
-Para usar otro archivo, pasar su ruta como argumento:
+También se puede indicar la ruta de otro archivo con el mismo formato:
 
-```bash
+```sh
 java -cp out ui.Main resources/tours.txt
 ```
 
-## Resultado esperado
+## Datos de ejemplo
 
-Se muestran seis tours en el catálogo, dos tours gastronómicos y el resultado de buscar `Ruta del Kuchen` (precio $25000).
+El archivo incluye seis tours. Dos son gastronómicos: `Ruta del Kuchen` y `Sabores del Sur`. La búsqueda definida en `Main` usa el nombre `Ruta del Kuchen`, cuyo precio es $25.000.
 
-El lector cierra el archivo automáticamente. Si falta el archivo, una línea tiene un formato incorrecto o un precio no es un entero no negativo, el programa informa el error y finaliza.
-
-## Repositorio
-
-https://github.com/DarkHaruki/llanquihue-tour
-
-La carpeta `LlanquihueTourApp` corresponde a Semana 4.
+Si el archivo no existe, un registro no tiene los tres campos o el precio no es un entero no negativo, el programa muestra un mensaje de error y termina.
