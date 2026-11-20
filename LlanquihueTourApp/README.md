@@ -1,50 +1,44 @@
 # LlanquihueTourApp
 
-David Soto — Desarrollo Orientado a Objetos I, Semana 4.
+David Soto · Desarrollo Orientado a Objetos I · Duoc UC Online
 
-Aplicación de consola en Java para consultar un catálogo de tours de Llanquihue. Lee el archivo `resources/tours.txt`, crea objetos `Tour` y los almacena en un `ArrayList`.
+El registro de personas de Llanquihue Tour carga guías, operadores locales y proveedores de transporte desde un CSV. La consola permite listar los registros, buscar por una parte del nombre y filtrar por categoría. El proyecto también incluye el catálogo de tours de la Semana 4.
 
-## Archivos
+## Paquetes y clases
 
-| Archivo | Función |
+| Paquete | Clases |
 | --- | --- |
-| `src/model/Tour.java` | Define nombre, tipo y precio, con constructor, getters, setters y `toString()`. |
-| `src/data/GestorDatos.java` | Lee el archivo en UTF-8, separa los campos por punto y coma y crea la colección. |
-| `src/ui/Main.java` | Muestra todos los tours, filtra por tipo gastronómico y busca por nombre. |
-| `resources/tours.txt` | Contiene seis tours de ejemplo con el formato `nombre;tipo;precio`. |
+| `model` | `Persona` contiene su propia `Direccion`. `Empleado` extiende `Persona` y agrega la categoría. `Tour` representa un servicio del catálogo. |
+| `data` | `LectorPersonas` lee el CSV en UTF-8. `GestorDatos` lee el archivo de tours. |
+| `service` | `RegistroPersonas` almacena los objetos en un `ArrayList`, controla correos duplicados y realiza las consultas. |
+| `util` | `Validacion` comprueba campos obligatorios, correo y teléfono. |
+| `ui` | `RegistroMain` abre el registro de personas. `Main` ejecuta el catálogo de tours. |
 
-Los precios están expresados en pesos chilenos. Los nombres pueden contener espacios; no hay espacios alrededor de los separadores.
+## Ejecutar en IntelliJ IDEA
 
-## Ejecución
+1. Abre la carpeta `LlanquihueTourApp` y selecciona un JDK 17 o superior.
+2. Si `src` aparece como carpeta normal, márcala como **Sources Root**.
+3. Abre `src/ui/RegistroMain.java` y ejecuta el método `main`. Usa `LlanquihueTourApp` como directorio de trabajo para que el programa encuentre el CSV.
 
-Se requiere JDK 8 o superior.
+El archivo de ejemplo carga seis personas con datos ficticios. En la opción **2**, escribe `munoz` para encontrar a Daniela Muñoz. En la opción **3**, escribe `guia turistico` para ver los dos guías. Las consultas aceptan mayúsculas y texto sin tildes.
 
-### IntelliJ IDEA
+## Ejecutar el JAR
 
-1. Abrir la carpeta `LlanquihueTourApp`, ubicada dentro del repositorio.
-2. Seleccionar el JDK en **File > Project Structure > Project SDK**.
-3. Marcar `src` como **Sources Root** desde el menú contextual.
-4. Ejecutar el método `main` de `src/ui/Main.java`.
-
-El directorio de trabajo de la configuración de ejecución debe ser `LlanquihueTourApp`, donde se encuentra la carpeta `resources`.
-
-### Terminal
-
-Desde la carpeta `LlanquihueTourApp`:
+Desde `LlanquihueTourApp`, con Java 17 o superior:
 
 ```sh
-javac -encoding UTF-8 -d out src/model/Tour.java src/data/GestorDatos.java src/ui/Main.java
-java -cp out ui.Main
+java -jar dist/LlanquihueTourApp.jar
+java -jar dist/LlanquihueTourApp.jar resources/personas.csv
 ```
 
-También se puede indicar la ruta de otro archivo con el mismo formato:
+Para reconstruir el JAR en PowerShell desde la carpeta del proyecto:
 
-```sh
-java -cp out ui.Main resources/tours.txt
+```powershell
+$fuentes = Get-ChildItem -Path src -Recurse -Filter *.java
+javac --release 17 -encoding UTF-8 -d out $fuentes.FullName
+jar --create --file dist/LlanquihueTourApp.jar --main-class ui.RegistroMain -C out .
 ```
 
-## Datos de ejemplo
+## Archivo de datos
 
-El archivo incluye seis tours. Dos son gastronómicos: `Ruta del Kuchen` y `Sabores del Sur`. La búsqueda definida en `Main` usa el nombre `Ruta del Kuchen`, cuyo precio es $25.000.
-
-Si el archivo no existe, un registro no tiene los tres campos o el precio no es un entero no negativo, el programa muestra un mensaje de error y termina.
+`resources/personas.csv` usa el encabezado `nombre;correo;telefono;calle;numero;comuna;categoria`. Cada fila contiene siete campos separados por punto y coma. El lector indica el número de línea de los registros inválidos o con correo repetido y continúa con las filas siguientes. Si falta el archivo o el encabezado es incorrecto, la aplicación informa el error y termina.
