@@ -2,6 +2,33 @@
 
 David Soto · Desarrollo Orientado a Objetos I · Duoc UC Online
 
+## Semana 6 · Servicios turísticos
+
+La actividad usa herencia simple para compartir el nombre y la duración de los servicios turísticos. Cada subclase agrega un atributo propio y sobrescribe `toString()` para mostrar sus datos completos.
+
+| Paquete | Clase | Responsabilidad |
+| --- | --- | --- |
+| `model` | `ServicioTuristico` | Guarda el nombre y la duración en horas. |
+| `model` | `RutaGastronomica` | Agrega el número de paradas. |
+| `model` | `PaseoLacustre` | Agrega el tipo de embarcación. |
+| `model` | `ExcursionCultural` | Agrega el lugar histórico. |
+| `data` | `GestorServicios` | Crea dos ejemplos de cada subclase. |
+| `ui` | `Main` | Muestra los seis ejemplos en consola. |
+
+### Ejecutar Main
+
+En IntelliJ IDEA, abre `LlanquihueTourApp` con un JDK 17 o superior y ejecuta `src/ui/Main.java`. Si el IDE no reconoce los paquetes, marca `src` como **Sources Root**.
+
+También se puede ejecutar desde la carpeta `LlanquihueTourApp` en PowerShell:
+
+```powershell
+$fuentes = Get-ChildItem -Path src -Recurse -Filter *.java
+javac --release 17 -encoding UTF-8 -d out $fuentes.FullName
+java -cp out ui.Main
+```
+
+## Actividades anteriores
+
 El registro de personas de Llanquihue Tour carga guías, operadores locales y proveedores de transporte desde un CSV. La consola permite listar los registros, buscar por una parte del nombre y filtrar por categoría. El proyecto también incluye el catálogo de tours de la Semana 4.
 
 ## Paquetes y clases
@@ -12,7 +39,7 @@ El registro de personas de Llanquihue Tour carga guías, operadores locales y pr
 | `data` | `LectorPersonas` lee el CSV en UTF-8. `GestorDatos` lee el archivo de tours. |
 | `service` | `RegistroPersonas` almacena los objetos en un `ArrayList`, controla correos duplicados y realiza las consultas. |
 | `util` | `Validacion` comprueba campos obligatorios, correo y teléfono. |
-| `ui` | `RegistroMain` abre el registro de personas. `Main` ejecuta el catálogo de tours. |
+| `ui` | `RegistroMain` abre el registro de personas. `CatalogoMain` ejecuta el catálogo de tours de la Semana 4. |
 
 ## Ejecutar en IntelliJ IDEA
 
